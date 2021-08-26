@@ -20,7 +20,9 @@ function App(): ReactElement {
         <Main>
           <Banner />
           <Switch>
-            <Route path="/services" exact component={Loading} />
+            <Route path="/about.html" exact component={Loading} />
+            <Route path="/contacts.html" exact component={Error} />
+            <Route path="/catalog.html" exact component={Loading} />
             <Route path="/services/:id" exact component={Loading} />
           </Switch>
 
