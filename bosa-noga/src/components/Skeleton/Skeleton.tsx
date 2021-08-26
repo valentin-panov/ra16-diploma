@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
+import React, { ReactElement } from 'react';
 import './Skeleton.css';
 
 export type Props = React.HTMLAttributes<HTMLDivElement>;
 
-export const Skeleton = memo<Props>(({ className, ...props }) => <div {...props} className="skeleton" />);
+export default function Skeleton({ className, ...props }: Props): ReactElement {
+  return <div {...props} className="skeleton" />;
+}
