@@ -4,6 +4,8 @@ import Menu from './Menu/Menu';
 import SearchIcon from './Search/SearchIcon';
 import SearchField from './Search/SearchField';
 import img from '../../img/header-logo.png';
+import Cart from './Cart/Cart';
+import CartCounter from './CartCounter/CartCounter';
 
 export default function Header(): ReactElement {
   const [search, setSearch] = useState(false);
@@ -50,8 +52,8 @@ export default function Header(): ReactElement {
                   <div className="header-controls-pics">
                     {search ? <SearchField /> : <SearchIcon onClick={() => setSearch(!search)} />}
                     <div className="header-controls-pic header-controls-cart">
-                      <div className="header-controls-cart-full">1</div>
-                      <div className="header-controls-cart-menu" />
+                      <CartCounter />
+                      <Cart />
                     </div>
                   </div>
                   <form data-id="search-form" className="header-controls-search-form form-inline invisible">
