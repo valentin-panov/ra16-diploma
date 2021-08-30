@@ -8,9 +8,9 @@ import { asyncFetchData } from '../../reducers/TopSales/reducer';
 import { RootState } from '../../store';
 
 export default function TopSales(): ReactElement {
-  const status = useSelector((store: RootState) => store.items.status);
-  const error = useSelector((store: RootState) => store.items.error);
-  const items = useSelector((store: RootState) => store.items.items);
+  const status = useSelector((store: RootState) => store.topSales.status);
+  const error = useSelector((store: RootState) => store.topSales.error);
+  const items = useSelector((store: RootState) => store.topSales.topSales);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,21 +18,25 @@ export default function TopSales(): ReactElement {
   }, [dispatch]);
 
   return (
-    <section className="top-sales">
-      <h2 className="text-center">Хиты продаж!</h2>
+    <>
+      {(status === 'pending' || status === 'success') && (
+        <section className="top-sales">
+          <h2 className="text-center">Хиты продаж!</h2>
 
-      {status === 'pending' && <Preloader />}
-      {status === 'error' && <Error message={error} />}
+          {status === 'pending' && <Preloader />}
 
-      {status === 'success' && items.length > 0 && (
-        <div className="row">
-          {items.map(
-            (item: ICard): ReactElement => (
-              <Card key={item.id} {...item} />
-            )
+          {status === 'success' && items.length > 0 && (
+            <div className="row">
+              {items.map(
+                (item: ICard): ReactElement => (
+                  <Card key={item.id} {...item} />
+                )
+              )}
+            </div>
           )}
-        </div>
+        </section>
       )}
-    </section>
+      {status === 'error' && <Error message={error} />}
+    </>
   );
 }

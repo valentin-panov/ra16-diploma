@@ -7,7 +7,7 @@ export type Props = {
 
 export default function Main({ className, children }: Props): ReactElement {
   return (
-    <main className={`container ${className}`}>
+    <main className={`container ${className || ''}`}>
       <div className="row">
         <div className="col">{children}</div>
       </div>

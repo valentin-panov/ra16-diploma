@@ -14,15 +14,36 @@ export interface ICard {
   sizes: { size: string; avalible: boolean }[];
 }
 
-export interface IInitialStateTopSales {
+export interface Status {
   status: 'idle' | 'pending' | 'success' | 'error';
-  items: ICard[];
   error: string;
 }
-export interface IInitialStateCatalog {
-  catalog: {
-    status: 'idle' | 'pending' | 'success' | 'error';
-    items: ICard[];
-    error: string;
-  };
+
+export interface IInitialStateTopSales extends Status {
+  topSales: ICard[];
+}
+
+export interface IInitialStateCatalog extends Status {
+  catalog: ICard[];
+}
+
+export interface SearchState {
+  searchField: boolean;
+  searchString: string;
+}
+
+export interface Category {
+  id: number;
+  title: string;
+}
+
+export interface Categories extends Status {
+  categories: Category[];
+}
+
+export interface IInitialStore {
+  topSales: IInitialStateTopSales;
+  catalog: IInitialStateCatalog;
+  search: SearchState;
+  categories: Category[];
 }

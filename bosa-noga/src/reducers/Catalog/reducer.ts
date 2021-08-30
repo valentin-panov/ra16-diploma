@@ -4,19 +4,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Interfaces
-import { IInitialStateTopSales, ICard } from '../../interfaces/Interfaces';
+import { IInitialStateCatalog, ICard } from '../../interfaces/Interfaces';
 
 // Server
 import { serverURL } from '../../App';
 
-const initialState: IInitialStateTopSales = {
+const initialState: IInitialStateCatalog = {
   status: 'idle',
   error: '',
-  topSales: [],
+  catalog: [],
 };
 
-export const asyncFetchData = createAsyncThunk('topSales/FetchingData', async () => {
-  const response = await fetch(`${serverURL}top-sales`);
+export const asyncFetchData = createAsyncThunk('catalog/FetchingData', async () => {
+  const response = await fetch(`${serverURL}items `);
   if (!response.ok) {
     throw new Error('request error');
   }
@@ -24,8 +24,8 @@ export const asyncFetchData = createAsyncThunk('topSales/FetchingData', async ()
   return items;
 });
 
-const topSalesSlice = createSlice({
-  name: 'topSales',
+const catalogSlice = createSlice({
+  name: 'catalog',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -34,7 +34,7 @@ const topSalesSlice = createSlice({
       state.error = '';
     });
     builder.addCase(asyncFetchData.fulfilled, (state, action: PayloadAction<ICard[]>) => {
-      state.topSales = [...action.payload];
+      state.catalog = [...action.payload];
       state.status = 'success';
     });
     builder.addCase(asyncFetchData.rejected, (state, action) => {
@@ -44,4 +44,4 @@ const topSalesSlice = createSlice({
   },
 });
 
-export default topSalesSlice.reducer;
+export default catalogSlice.reducer;

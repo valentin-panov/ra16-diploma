@@ -40,6 +40,7 @@ section {
 .row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
@@ -56,6 +57,13 @@ section {
 
 .text-center {
   align-self: center;
+}
+
+.alert-hidden {
+  opacity: 0;
+  transition: all 250ms linear 2s;
+
+  /* the last value defines transition-delay */
 }
 
 /* Header */
@@ -146,7 +154,8 @@ section {
   text-align: center;
   background: linear-gradient(90deg, #ff65a5 1.11%, #ff8076 100%);
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(255, 101, 165, 0.6), inset 0 1px 1px #ff8076;
+
+  /* box-shadow: 0 2px 8px rgba(255, 101, 165, 0.6), inset 0 1px 1px #ff8076; */
 }
 
 .header-controls-search-form {
@@ -256,11 +265,14 @@ section {
   min-height: 300px;
 }
 
-.col-3 {
-  width: 32%;
-}
-
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  min-width: 360px;
+  min-height: 645px;
+  margin: 0.5rem;
   padding: 7px;
   border: 1px solid grey;
   border-radius: 7px;
@@ -271,6 +283,13 @@ section {
 
 .img-fluid {
   width: 100%;
+}
+
+.card-img-top {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-body {
@@ -285,7 +304,9 @@ section {
 }
 
 .catalog-categories {
-  margin-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
   font-size: 1.3rem;
 }
 
@@ -393,8 +414,7 @@ section {
   color: #f00;
 }
 
-h2,
-.h2 {
+h2 {
   margin-top: 2em;
   margin-bottom: 1.5em;
 }

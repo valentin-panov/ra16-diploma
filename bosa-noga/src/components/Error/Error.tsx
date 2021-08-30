@@ -13,13 +13,15 @@ const useStyles = makeStyles((theme) => ({
 
 export type Props = {
   message: string;
+  className?: string;
+  onTransitionEnd?: () => void;
 };
 
-export default function Error({ message }: Props): ReactElement {
+export default function Error({ message, className }: Props): ReactElement {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.root} shadow`} style={{ margin: '0.5vmin' }}>
+    <div className={`${classes.root} shadow ${className}`} style={{ margin: '0.5vmin' }}>
       <Alert variant="filled" severity="error">
         Произошла ошибка: {message}
       </Alert>
