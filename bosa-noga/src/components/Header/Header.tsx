@@ -1,14 +1,12 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Menu from './Menu/Menu';
-import SearchIcon from './Search/SearchIcon';
-import SearchField from './Search/SearchField';
+import HeaderSearch from './Search/HeaderSearch';
 import img from '../../img/header-logo.png';
 import Cart from './Cart/Cart';
 import CartCounter from './CartCounter/CartCounter';
 
 export default function Header(): ReactElement {
-  const [search, setSearch] = useState(false);
   const location = useLocation();
   const { pathname } = location;
   const splitLocation: string = pathname.split('/')[1];
@@ -50,7 +48,7 @@ export default function Header(): ReactElement {
                 </ul>
                 <div className="header-controls">
                   <div className="header-controls-pics">
-                    {search ? <SearchField /> : <SearchIcon onClick={() => setSearch(!search)} />}
+                    <HeaderSearch />
                     <div className="header-controls-pic header-controls-cart">
                       <CartCounter />
                       <Cart />

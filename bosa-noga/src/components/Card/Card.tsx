@@ -5,7 +5,7 @@ import { ICard } from '../../interfaces/Interfaces';
 export default function Card(item: ICard): ReactElement {
   const { images, title, price, id } = item;
   return (
-    <div className={`card `}>
+    <div className="card shadow">
       <div className="card-img-top">
         <img src={images[0]} className=" img-fluid" alt={title} />
       </div>

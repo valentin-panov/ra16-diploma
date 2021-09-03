@@ -5,7 +5,7 @@ export default function Footer(): ReactElement {
   return (
     <footer className="bg-light footer">
       <div className="row">
-        <div className="col">
+        <div className="col-3">
           <section>
             <h3>Информация</h3>
             <ul className="nav flex-column">
@@ -27,7 +27,7 @@ export default function Footer(): ReactElement {
             </ul>
           </section>
         </div>
-        <div className="col">
+        <div className="col-3">
           <section>
             <h3>Принимаем к оплате:</h3>
             <div className="footer-pay">
@@ -47,7 +47,7 @@ export default function Footer(): ReactElement {
             </div>
           </section>
         </div>
-        <div className="col text-right">
+        <div className="col-3 text-right">
           <section className="footer-contacts">
             <h3>Контакты:</h3>
             <a className="footer-contacts-phone" href="tel:+7-495-790-35-03">

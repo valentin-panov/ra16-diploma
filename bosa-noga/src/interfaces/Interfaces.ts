@@ -25,6 +25,8 @@ export interface IInitialStateTopSales extends Status {
 
 export interface IInitialStateCatalog extends Status {
   catalog: ICard[];
+  haveMore: boolean;
+  category: number;
 }
 
 export interface SearchState {

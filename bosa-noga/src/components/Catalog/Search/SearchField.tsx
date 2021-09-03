@@ -2,7 +2,8 @@ import React, { ReactElement } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from './SearchIcon';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,11 +28,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function SearchField(): ReactElement {
   const classes = useStyles();
+  const searchString = useSelector((store: RootState) => store.search.searchString);
 
   return (
-    <Paper component="form" className={classes.root} onBlur={() => {}}>
-      <SearchIcon />
-      <InputBase className={classes.input} placeholder="" inputProps={{ 'aria-label': 'search' }} autoFocus />
-    </Paper>
+    <>
+      <Paper component="form" className={classes.root}>
+        <InputBase
+          className={classes.input}
+          placeholder=""
+          inputProps={{ 'aria-label': 'search' }}
+          autoFocus
+          value={searchString}
+        />
+      </Paper>
+    </>
   );
 }

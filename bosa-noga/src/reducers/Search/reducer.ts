@@ -14,17 +14,17 @@ const initialState: SearchState = {
   searchString: '',
 };
 
-export const asyncFetchData = createAsyncThunk('card/FetchingData', async () => {
-  const response = await fetch(`${serverURL}top-sales`);
-  const topSales = await response.json();
-  if (!response.ok) {
+export const searchItems = createAsyncThunk('search/FetchingData', async (query: string) => {
+  const request = await fetch(`${serverURL}items?q=<${query}>`);
+  if (!request.ok) {
     throw new Error('Something went wrong');
   }
-  return topSales;
+  const response = await request.json();
+  return response;
 });
 
 const searchSlice = createSlice({
-  name: 'cart',
+  name: 'search',
   initialState,
   reducers: {},
   // extraReducers: (builder) => {
