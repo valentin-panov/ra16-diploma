@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { RootState } from '../../store';
-import { asyncFetchCategory, asyncFetchData, asyncFetchMore } from '../../reducers/Catalog/reducer';
+import { asyncFetchCategory, asyncFetchData, asyncFetchMore, setCategory } from '../../reducers/Catalog/reducer';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 import { ICard } from '../../interfaces/Interfaces';
@@ -32,6 +32,7 @@ export default function Catalog(): ReactElement {
   }, [category]);
 
   useEffect(() => {
+    dispatch(setCategory(0));
     dispatch(asyncFetchData());
   }, [dispatch]);
 
