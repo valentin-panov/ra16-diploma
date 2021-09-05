@@ -10,7 +10,6 @@ import { SearchState } from '../../interfaces/Interfaces';
 import { serverURL } from '../../App';
 
 const initialState: SearchState = {
-  searchField: false,
   searchString: '',
 };
 
@@ -26,21 +25,12 @@ export const searchItems = createAsyncThunk('search/FetchingData', async (query:
 const searchSlice = createSlice({
   name: 'search',
   initialState,
-  reducers: {},
-  // extraReducers: (builder) => {
-  // builder.addCase(asyncFetchData.pending, (state) => {
-  // state.status = 'pending';
-  // state.error = '';
-  // });
-  // builder.addCase(asyncFetchData.fulfilled, (state, action: PayloadAction<ICard[]>) => {
-  // state.items = [...action.payload];
-  // state.status = 'success';
-  // });
-  // builder.addCase(asyncFetchData.rejected, (state, action) => {
-  // state.status = 'error';
-  // state.error = String(action.error.message);
-  // });
-  // },
+  reducers: {
+    setSearch(state, action) {
+      state.searchString = action.payload;
+    },
+  },
 });
 
 export default searchSlice.reducer;
+export const { setSearch } = searchSlice.actions;

@@ -1,8 +1,18 @@
-import React, { ReactElement, useState } from 'react';
+// ! Я пытался вынести этот компонент в переиспользуемые для хедера и для каталога, но пока не смог разобраться,
+// как в него правильно прокинуть функцию скрытия onBlur
+
+// onBlur выстреливает раньше submit при нажатии на кнопку, хакнул таймаутом, хак мне не нравится
+
+import React, { FormEvent, ReactElement, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import SearchIcon from './SearchIcon';
+import { RootState } from '../../../store';
+import { setSearch } from '../../../reducers/Search/reducer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,28 +36,59 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function HeaderSearch(): ReactElement {
-  const [search, setSearch] = useState(false);
+  const [searchFieldVisibility, setSearchFieldVisibility] = useState(false);
+  const [searchString, setSearchString] = useState(useSelector((store: RootState) => store.search.searchString));
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const changeSearchField = (payload: string): void => {
+    setSearchString(payload);
+  };
+
+  const onSearchSubmit = (): void => {
+    setSearchFieldVisibility(false);
+    dispatch(setSearch(searchString));
+    history.push('/catalog.html');
+  };
 
   return (
     <>
-      {search ? (
+      {searchFieldVisibility ? (
         <Paper
           component="form"
           className={classes.root}
+          onSubmit={(event: FormEvent<HTMLDivElement>): void => {
+            event.preventDefault();
+            onSearchSubmit();
+          }}
           onBlur={() => {
-            setSearch(false);
+            setTimeout(() => {
+              setSearchFieldVisibility(false);
+            }, 300);
           }}
         >
-          <InputBase className={classes.input} placeholder="" inputProps={{ 'aria-label': 'search' }} autoFocus />
-          <SearchIcon />
+          <InputBase
+            id="searchFieldHeader"
+            name="searchField"
+            type="text"
+            className={classes.input}
+            placeholder=""
+            inputProps={{ 'aria-label': 'search' }}
+            autoFocus
+            onInput={(event: FormEvent<HTMLDivElement>) => {
+              changeSearchField((event.target as HTMLInputElement).value);
+            }}
+          />
+          <Button type="submit">
+            <SearchIcon />
+          </Button>
         </Paper>
       ) : (
-        <SearchIcon onClick={() => setSearch(true)} />
+        <Button onClick={() => setSearchFieldVisibility(true)}>
+          <SearchIcon />
+        </Button>
       )}
     </>
   );
 }
-
-// ! Я пытался вынести этот компонент в переиспользуемые для хедера и для каталога, но пока не смог разобраться,
-// как в него правильно прокинуть функцию скрытия onBlur

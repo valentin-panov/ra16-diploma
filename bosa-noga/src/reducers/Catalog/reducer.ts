@@ -17,30 +17,19 @@ const initialState: IInitialStateCatalog = {
   category: 0,
 };
 
-export const asyncFetchMore = createAsyncThunk(
-  'catalog/FetchingMoreData',
-  async (params?: { count?: string; category?: number }) => {
-    const categoryFilter = params && params.category ? `categoryId=${params.category}` : ``;
-    const countOffset = params && params.count ? `offset=${params.count}` : ``;
+export type Params = { count?: string; category?: number; searchString?: string };
 
-    const urlParamsAll = categoryFilter && countOffset ? `?${categoryFilter}&${countOffset}` : '';
-    const urlParamsCat = categoryFilter ? `?${categoryFilter}` : '';
-    const urlParamsCou = countOffset ? `?${countOffset}` : '';
-
-    const reqURL = `${serverURL}items${urlParamsAll || urlParamsCat || urlParamsCou}`;
-
-    const response = await fetch(reqURL);
-    if (!response.ok) {
-      throw new Error(`request error: ${reqURL}`);
-    }
-    const items = await response.json();
-    return items;
+export const asyncFetchData = createAsyncThunk('catalog/FetchingData', async (params?: Params) => {
+  const reqParams = new URLSearchParams(window.location.search);
+  if (params && params.category) {
+    reqParams.set('categoryId', `${params.category}`);
   }
-);
+  if (params && params.searchString) {
+    reqParams.set('q', `${params.searchString}`);
+  }
+  const urlParamsAll = reqParams.toString();
 
-export const asyncFetchCategory = createAsyncThunk('catalog/FetchingCategory', async (category: number) => {
-  const categoryFilter = `?categoryId=${category}`;
-  const reqURL = `${serverURL}items${categoryFilter}`;
+  const reqURL = `${serverURL}items${urlParamsAll ? `?${urlParamsAll}` : ''}`;
   const response = await fetch(reqURL);
   if (!response.ok) {
     throw new Error(`request error: ${reqURL}`);
@@ -49,9 +38,21 @@ export const asyncFetchCategory = createAsyncThunk('catalog/FetchingCategory', a
   return items;
 });
 
-export const asyncFetchData = createAsyncThunk('catalog/FetchingData', async (category?: number) => {
-  const categoryFilter = category ? `?categoryId=${category}` : ``;
-  const reqURL = `${serverURL}items${categoryFilter}`;
+export const asyncFetchMore = createAsyncThunk('catalog/FetchingMoreData', async (params?: Params) => {
+  const reqParams = new URLSearchParams(window.location.search);
+  if (params && params.category) {
+    reqParams.set('categoryId', `${params.category}`);
+  }
+  if (params && params.count) {
+    reqParams.set('offset', `${params.count}`);
+  }
+  if (params && params.searchString) {
+    reqParams.set('q', `${params.searchString}`);
+  }
+  const urlParamsAll = reqParams.toString();
+
+  const reqURL = `${serverURL}items${urlParamsAll ? `?${urlParamsAll}` : ''}`;
+
   const response = await fetch(reqURL);
   if (!response.ok) {
     throw new Error(`request error: ${reqURL}`);
@@ -92,19 +93,6 @@ const catalogSlice = createSlice({
       state.status = 'success';
     });
     builder.addCase(asyncFetchData.rejected, (state, action) => {
-      state.status = 'error';
-      state.error = String(action.error.message);
-    });
-    builder.addCase(asyncFetchCategory.pending, (state) => {
-      state.status = 'pending';
-      state.error = '';
-    });
-    builder.addCase(asyncFetchCategory.fulfilled, (state, action: PayloadAction<ICard[]>) => {
-      state.haveMore = !(action.payload.length < 6);
-      state.catalog = [...action.payload];
-      state.status = 'success';
-    });
-    builder.addCase(asyncFetchCategory.rejected, (state, action) => {
       state.status = 'error';
       state.error = String(action.error.message);
     });

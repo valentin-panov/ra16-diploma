@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { RootState } from '../../store';
-import { asyncFetchCategory, asyncFetchData, asyncFetchMore, setCategory } from '../../reducers/Catalog/reducer';
+import { asyncFetchData, asyncFetchMore, setCategory } from '../../reducers/Catalog/reducer';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 import { ICard } from '../../interfaces/Interfaces';
 import Card from '../Card/Card';
 import Categories from './Categories/Categories';
 import SearchField from './Search/SearchField';
+import { setSearch } from '../../reducers/Search/reducer';
 
 export default function Catalog(): ReactElement {
   const status = useSelector((store: RootState) => store.catalog.status);
@@ -17,24 +18,28 @@ export default function Catalog(): ReactElement {
   const catalog = useSelector((store: RootState) => store.catalog.catalog);
   const category = useSelector((store: RootState) => store.catalog.category);
   const haveMore = useSelector((store: RootState) => store.catalog.haveMore);
+  const searchString = useSelector((store: RootState) => store.search.searchString);
   const location = useLocation();
   const { pathname } = location;
   const splitLocation: string = pathname.split('/')[1];
 
   const dispatch = useDispatch();
 
-  const getMore = (count: string) => {
-    dispatch(asyncFetchMore({ count, category }));
-  };
-
-  useEffect(() => {
-    dispatch(asyncFetchCategory(category));
-  }, [category]);
+  if (splitLocation !== 'catalog.html') {
+    dispatch(setSearch(''));
+  }
 
   useEffect(() => {
     dispatch(setCategory(0));
-    dispatch(asyncFetchData());
   }, [dispatch]);
+
+  const getMore = (count: string) => {
+    dispatch(asyncFetchMore({ count, category, searchString }));
+  };
+
+  useEffect(() => {
+    dispatch(asyncFetchData({ category, searchString }));
+  }, [dispatch, category, searchString]);
 
   return (
     <>

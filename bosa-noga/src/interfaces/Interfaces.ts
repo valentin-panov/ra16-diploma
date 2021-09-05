@@ -30,7 +30,6 @@ export interface IInitialStateCatalog extends Status {
 }
 
 export interface SearchState {
-  searchField: boolean;
   searchString: string;
 }
 
