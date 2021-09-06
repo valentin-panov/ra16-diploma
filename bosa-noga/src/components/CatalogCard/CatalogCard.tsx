@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { ICard } from '../../interfaces/Interfaces';
 
@@ -12,11 +13,11 @@ export default function Card(item: ICard): ReactElement {
       <div className="card-body">
         <p className="card-text">{title}</p>
         <p className="card-text">{price} руб.</p>
-        <a href={`/products/${id}.html`}>
-          <Button variant="contained" color="primary" type="submit">
+        <Link to={`/catalog/${id}.html`}>
+          <Button variant="contained" color="primary">
             Заказать
           </Button>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { asyncFetchData, asyncFetchMore, setCategory } from '../../reducers/Cata
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 import { ICard } from '../../interfaces/Interfaces';
-import Card from '../Card/Card';
+import CatalogCard from '../CatalogCard/CatalogCard';
 import Categories from './Categories/Categories';
 import SearchField from './Search/SearchField';
 import { setSearch } from '../../reducers/Search/reducer';
@@ -54,7 +54,7 @@ export default function Catalog(): ReactElement {
               <div className="row">
                 {catalog.map(
                   (item: ICard): ReactElement => (
-                    <Card key={item.id} {...item} />
+                    <CatalogCard key={item.id} {...item} />
                   )
                 )}
               </div>

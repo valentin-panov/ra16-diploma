@@ -42,6 +42,10 @@ export interface Categories extends Status {
   categories: Category[];
 }
 
+export interface ProductCard extends Status {
+  item: ICard;
+}
+
 export interface IInitialStore {
   topSales: IInitialStateTopSales;
   catalog: IInitialStateCatalog;

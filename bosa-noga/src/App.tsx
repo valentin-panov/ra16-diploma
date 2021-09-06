@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './css/style.css';
-import Error from './components/Error/Error';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Banner from './components/Banner/Banner';
@@ -11,6 +10,7 @@ import About from './components/About/About';
 import Contacts from './components/Contacts/Contacts';
 import Catalog from './components/Catalog/Catalog';
 import MainPage from './components/MainPage/MainPage';
+import ProductCard from './components/ProductCard/ProductCard';
 
 export const appURL = '/ra-bosa-noga';
 export const serverURL = 'https://ra16-dplm-bcknd.herokuapp.com/api/';
@@ -27,7 +27,7 @@ function App(): ReactElement {
             <Route path="/about.html" exact component={About} />
             <Route path="/contacts.html" exact component={Contacts} />
             <Route path="/catalog.html" exact component={Catalog} />
-            <Route path="/products/:id" exact component={Error} />
+            <Route path="/catalog/:id.html" exact component={ProductCard} />
             <Route path="*" component={Error404} />
           </Switch>
         </Main>
