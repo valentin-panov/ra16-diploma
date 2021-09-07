@@ -29,7 +29,7 @@ export default function ProductCard(): ReactElement {
 
   return (
     <>
-      {status === 'pending' && Preloader}
+      {status === 'pending' && <Preloader />}
       {status === 'error' && <Error message={error} />}
       {status === 'success' && (
         <section className="catalog-item">
@@ -86,7 +86,7 @@ export default function ProductCard(): ReactElement {
                 className="btn btn-danger btn-block btn-lg"
                 onClick={() => handleBuy()}
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
                 В корзину
               </Button>

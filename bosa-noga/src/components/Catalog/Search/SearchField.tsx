@@ -82,7 +82,7 @@ export default function SearchField(): ReactElement {
               onSearchClear();
             }}
           >
-            <CloseIcon className={classes.iconButton} />
+            <CloseIcon />
           </Button>
         )}
       </Paper>

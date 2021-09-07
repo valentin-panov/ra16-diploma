@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext');
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
 :root {
   max-width: 1200px;
@@ -45,6 +46,7 @@ section {
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -287,9 +289,10 @@ section {
 .card {
   display: flex;
   flex-direction: column;
+  flex-grow: 0;
   justify-content: space-between;
   width: 30%;
-  min-width: 360px;
+  min-width: 334px;
   min-height: 645px;
   margin: 0.5rem;
   padding: 7px;
@@ -312,7 +315,26 @@ section {
 }
 
 .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  justify-content: space-between;
   padding: 14px;
+}
+
+.card-text-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-text {
+  font: inherit;
+}
+
+.card-btn {
+  display: flex;
+  flex-grow: 0;
 }
 
 /* Catalog */
