@@ -9,6 +9,7 @@ import { asyncFetchProductCard } from '../../reducers/ProductCard/reducer';
 
 export default function ProductCard(): ReactElement {
   const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
   const history = useHistory();
   const status = useSelector((store: RootState) => store.productCard.status);
   const error = useSelector((store: RootState) => store.productCard.error);
@@ -93,14 +94,30 @@ export default function ProductCard(): ReactElement {
                       ))}
                     </span>
                   )}
-                  {!availableSizes && <span className="catalog-item-size">нет в наличии</span>}
+                  {!availableSizes.length && <span className="catalog-item-size">нет доступных размеров</span>}
                 </p>
                 <p>
-                  Количество:{' '}
+                  Количество:
                   <span className="btn-group btn-group-sm pl-2">
-                    <Button className="btn btn-secondary">-</Button>
-                    <span className="btn btn-outline-primary">1</span>
-                    <Button className="btn btn-secondary">+</Button>
+                    <Button
+                      // className="btn btn-secondary"
+                      onClick={() => setQuantity(quantity - 1)}
+                      disabled={quantity < 2}
+                      color="primary"
+                      variant="outlined"
+                    >
+                      -
+                    </Button>
+                    <span className="btn btn-outline-secondary">{quantity}</span>
+                    <Button
+                      // className="btn btn-secondary"
+                      onClick={() => setQuantity(quantity + 1)}
+                      disabled={quantity > 9}
+                      color="primary"
+                      variant="outlined"
+                    >
+                      +
+                    </Button>
                   </span>
                 </p>
               </div>
