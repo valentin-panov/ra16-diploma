@@ -476,6 +476,44 @@ h2,
   border-radius: 15px;
 }
 
+.form_radio_btn {
+  display: inline-block;
+}
+
+.form_radio_btn input[type='radio'] {
+  display: none;
+}
+
+.form_radio_btn label {
+  display: inline-block;
+  margin: 5px;
+  padding: 0 10px;
+  line-height: 34px;
+
+  /* border: 1px solid #999; */
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover */
+.form_radio_btn label:hover {
+  color: #666;
+}
+
+/* Checked */
+.form_radio_btn input[type='radio']:checked + label {
+  color: #fff;
+  background: #727e86;
+  border-radius: 15px;
+}
+
+/* Disabled */
+.form_radio_btn input[type='radio']:disabled + label {
+  color: #666;
+  background: #efefef;
+}
+
 .catalog-search-form {
   display: block;
   width: 100%;

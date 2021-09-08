@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
@@ -8,6 +8,7 @@ import { RootState } from '../../store';
 import { asyncFetchProductCard } from '../../reducers/ProductCard/reducer';
 
 export default function ProductCard(): ReactElement {
+  const [selectedSize, setSelectedSize] = useState('');
   const history = useHistory();
   const status = useSelector((store: RootState) => store.productCard.status);
   const error = useSelector((store: RootState) => store.productCard.error);
@@ -22,10 +23,16 @@ export default function ProductCard(): ReactElement {
   }, [dispatch]);
 
   const handleBuy = () => {
-    history.push('/');
+    history.push('/cart.html');
   };
 
-  const { images, title, sku, manufacturer, color, material, reason, season } = item;
+  const { images, title, sku, manufacturer, color, material, reason, season, sizes } = item;
+
+  const availableSizes = sizes.filter((el) => el.avalible);
+
+  const selectSize = (id: string) => {
+    setSelectedSize(id);
+  };
 
   return (
     <>
@@ -70,8 +77,23 @@ export default function ProductCard(): ReactElement {
               <div className="text-center">
                 <p>
                   Размеры в наличии:
-                  <span className="catalog-item-size selected">18 US</span>{' '}
-                  <span className="catalog-item-size">20 US</span>
+                  {availableSizes && (
+                    <span className="form_radio_btn">
+                      {availableSizes.map((size) => (
+                        <span key={size.size}>
+                          <input
+                            type="radio"
+                            id={size.size}
+                            name="size"
+                            onClick={() => selectSize(size.size)}
+                            defaultChecked={selectedSize === size.size}
+                          />
+                          <label htmlFor={size.size}> {size.size}</label>
+                        </span>
+                      ))}
+                    </span>
+                  )}
+                  {!availableSizes && <span className="catalog-item-size">нет в наличии</span>}
                 </p>
                 <p>
                   Количество:{' '}
@@ -87,6 +109,7 @@ export default function ProductCard(): ReactElement {
                 onClick={() => handleBuy()}
                 variant="contained"
                 color="secondary"
+                disabled={!selectedSize}
               >
                 В корзину
               </Button>
