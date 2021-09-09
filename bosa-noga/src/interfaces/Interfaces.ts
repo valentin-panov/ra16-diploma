@@ -50,9 +50,11 @@ export interface Cart {
   items: { item: ICard; size: string; quantity: number }[];
 }
 
-export interface IInitialStore {
-  topSales: IInitialStateTopSales;
-  catalog: IInitialStateCatalog;
-  search: SearchState;
-  categories: Category[];
+export interface Order {
+  owner: { phone: string; address: string };
+  items: { id: number; price: number; count: number; size: string }[];
+}
+
+export interface IOrder extends Status {
+  order: Order;
 }

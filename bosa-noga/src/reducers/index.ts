@@ -5,6 +5,7 @@ import categoriesSlice from './Categories/reducer';
 import searchSlice from './Search/reducer';
 import productCardSlice from './ProductCard/reducer';
 import cartSlice from './Cart/reducer';
+import postOrderSlice from './Order/reducer';
 
 export const rootReducer = {
   topSales: topSalesSlice,
@@ -13,4 +14,5 @@ export const rootReducer = {
   search: searchSlice,
   productCard: productCardSlice,
   cart: cartSlice,
+  postOrder: postOrderSlice,
 };
