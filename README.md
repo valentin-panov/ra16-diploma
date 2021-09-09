@@ -208,7 +208,7 @@ const fortune = (ctx, body = null, status = 200) => {
 
 Корзина выглядит следующим образом:
 
-![Cart](./assets/cart-comments.png)
+![CartIcon](./assets/cart-comments.png)
 
 Блок корзина - отображает товары, находящиеся в корзине. Все товары хранятся локально в localStorage. Товар можно удалить из корзины (тогда он должен удалиться и из localStorage тоже)
 
@@ -220,7 +220,7 @@ const fortune = (ctx, body = null, status = 200) => {
 
 Соответственно, виджет корзинки отображает количество позиций в корзине:
 
-![Cart](./assets/cart-widget.png)
+![CartIcon](./assets/cart-widget.png)
 
 Если в корзине товаров нет вообще, то розового индикатора с числом тоже быть не должно.
 

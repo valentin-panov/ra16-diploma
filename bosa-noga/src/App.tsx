@@ -11,6 +11,7 @@ import Contacts from './components/Contacts/Contacts';
 import Catalog from './components/Catalog/Catalog';
 import MainPage from './components/MainPage/MainPage';
 import ProductCard from './components/ProductCard/ProductCard';
+import Cart from './components/Cart/Cart';
 
 export const appURL = '/ra-bosa-noga';
 export const serverURL = 'https://ra16-dplm-bcknd.herokuapp.com/api/';
@@ -28,7 +29,8 @@ function App(): ReactElement {
             <Route path="/contacts.html" exact component={Contacts} />
             <Route path="/catalog.html" exact component={Catalog} />
             <Route path="/catalog/:id.html" exact component={ProductCard} />
-            <Route path="*" component={Error404} />
+            <Route path="/cart.html" exact component={Cart} />
+            <Route path="*" component={Error404} /> CartIcon
           </Switch>
         </Main>
         <Footer />

@@ -6,6 +6,7 @@ import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 import { RootState } from '../../store';
 import { asyncFetchProductCard } from '../../reducers/ProductCard/reducer';
+import { addItem } from '../../reducers/Cart/reducer';
 
 export default function ProductCard(): ReactElement {
   const [selectedSize, setSelectedSize] = useState('');
@@ -21,9 +22,10 @@ export default function ProductCard(): ReactElement {
 
   useEffect(() => {
     dispatch(asyncFetchProductCard(parseInt(splitLocation, 10)));
-  }, [dispatch]);
+  }, [dispatch, splitLocation]);
 
   const handleBuy = () => {
+    dispatch(addItem({ item, size: selectedSize, quantity }));
     history.push('/cart.html');
   };
 
@@ -100,21 +102,21 @@ export default function ProductCard(): ReactElement {
                   Количество:
                   <span className="btn-group btn-group-sm pl-2">
                     <Button
-                      // className="btn btn-secondary"
                       onClick={() => setQuantity(quantity - 1)}
                       disabled={quantity < 2}
-                      color="primary"
-                      variant="outlined"
+                      color="default"
+                      variant="contained"
+                      disableElevation
                     >
                       -
                     </Button>
                     <span className="btn btn-outline-secondary">{quantity}</span>
                     <Button
-                      // className="btn btn-secondary"
                       onClick={() => setQuantity(quantity + 1)}
                       disabled={quantity > 9}
-                      color="primary"
-                      variant="outlined"
+                      color="default"
+                      variant="contained"
+                      disableElevation
                     >
                       +
                     </Button>

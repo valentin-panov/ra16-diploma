@@ -46,6 +46,10 @@ export interface ProductCard extends Status {
   item: ICard;
 }
 
+export interface Cart {
+  items: { item: ICard; size: string; quantity: number }[];
+}
+
 export interface IInitialStore {
   topSales: IInitialStateTopSales;
   catalog: IInitialStateCatalog;

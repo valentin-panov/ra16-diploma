@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { ICard } from '../../interfaces/Interfaces';
 
-export default function Card(item: ICard): ReactElement {
+export default function CatalogCard(item: ICard): ReactElement {
   const { images, title, price, id } = item;
   return (
     <div className="card shadow">

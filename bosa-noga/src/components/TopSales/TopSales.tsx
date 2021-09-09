@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
-import Card from '../CatalogCard/CatalogCard';
+import CatalogCard from '../CatalogCard/CatalogCard';
 import { ICard } from '../../interfaces/Interfaces';
 import { asyncFetchData } from '../../reducers/TopSales/reducer';
 import { RootState } from '../../store';
@@ -29,7 +29,7 @@ export default function TopSales(): ReactElement {
             <div className="row">
               {items.map(
                 (item: ICard): ReactElement => (
-                  <Card key={item.id} {...item} />
+                  <CatalogCard key={item.id} {...item} />
                 )
               )}
             </div>

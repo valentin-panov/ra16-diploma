@@ -50,22 +50,24 @@ export default function Catalog(): ReactElement {
           <Categories />
           {status === 'pending' && <Preloader />}
           {status === 'success' && catalog.length > 0 && (
-            <div className="col">
-              <div className="row">
-                {catalog.map(
-                  (item: ICard): ReactElement => (
-                    <CatalogCard key={item.id} {...item} />
-                  )
-                )}
+            <>
+              <div className="col">
+                <div className="row">
+                  {catalog.map(
+                    (item: ICard): ReactElement => (
+                      <CatalogCard key={item.id} {...item} />
+                    )
+                  )}
+                </div>
               </div>
-            </div>
-          )}
-          {haveMore && (
-            <div className="text-center h2 shadow">
-              <Button variant="outlined" color="primary" onClick={() => getMore(`${catalog.length}`)}>
-                Загрузить ещё
-              </Button>
-            </div>
+              {haveMore && (
+                <div className="text-center h2 shadow">
+                  <Button variant="outlined" color="primary" onClick={() => getMore(`${catalog.length}`)}>
+                    Загрузить ещё
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </section>
       )}

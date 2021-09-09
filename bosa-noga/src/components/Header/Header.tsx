@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Menu from './Menu/Menu';
 import HeaderSearch from './Search/HeaderSearch';
 import img from '../../img/header-logo.png';
-import Cart from './Cart/Cart';
+import CartIcon from './CartIcon/CartIcon';
 import CartCounter from './CartCounter/CartCounter';
 
 export default function Header(): ReactElement {
@@ -49,10 +49,12 @@ export default function Header(): ReactElement {
                 <div className="header-controls">
                   <div className="header-controls-pics">
                     <HeaderSearch />
-                    <div className="header-controls-pic header-controls-cart">
-                      <CartCounter />
-                      <Cart />
-                    </div>
+                    <Link to="/cart.html">
+                      <div className="header-controls-pic header-controls-cart">
+                        <CartCounter />
+                        <CartIcon />
+                      </div>
+                    </Link>
                   </div>
                   <form data-id="search-form" className="header-controls-search-form form-inline invisible">
                     <input className="form-control" placeholder="Поиск" />
