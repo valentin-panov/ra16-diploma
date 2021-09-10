@@ -53,6 +53,7 @@ export default function OrderForm(): ReactElement {
                     className="form-control"
                     id="phone"
                     placeholder="Ваш телефон"
+                    defaultValue={phone}
                     onInput={(event: FormEvent<HTMLInputElement>) => {
                       setPhone((event.target as HTMLInputElement).value);
                     }}
@@ -66,6 +67,7 @@ export default function OrderForm(): ReactElement {
                     className="form-control"
                     id="address"
                     placeholder="Адрес доставки"
+                    defaultValue={address}
                     onInput={(event: FormEvent<HTMLInputElement>) => {
                       setAddress((event.target as HTMLInputElement).value);
                     }}
@@ -84,7 +86,7 @@ export default function OrderForm(): ReactElement {
                   Согласен с правилами доставки
                 </label>
               </div>
-              <button type="submit" className="btn btn-outline-secondary">
+              <button type="submit" className="btn btn-outline-secondary" disabled={!(agreement && address && phone)}>
                 Оформить
               </button>
             </form>
