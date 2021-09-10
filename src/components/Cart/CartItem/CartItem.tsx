@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { ICard } from '../../../interfaces/Interfaces';
@@ -17,7 +18,7 @@ export default function CartItem(props: {
     <tr>
       <th scope="row">{index + 1}</th>
       <td>
-        <a href={`/items/${item.item.id}.html`}>{item.item.title}</a>
+        <Link to={`/items/${item.item.id}.html`}>{item.item.title}</Link>
       </td>
       <td>{item.size}</td>
       <td>{item.quantity}</td>
