@@ -1,7 +1,7 @@
 ﻿# Дипломный проект курса «React»
 [![Build status](https://ci.appveyor.com/api/projects/status/9j2yswsxdg9nkahq?svg=true)](https://ci.appveyor.com/project/vapanov/ra16-diploma)
 
-WEB VERSION: https://valentin-panov.github.io/ra-bosa-noga
+WEB VERSION: https://valentin-panov.github.io/ra16-diploma/
 
 Дипломный проект представляет собой интернет-магазин обуви. Задача заключается в создании работающего приложения, всеми основными функциями которого можно пользоваться.
 
