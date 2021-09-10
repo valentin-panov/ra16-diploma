@@ -13,7 +13,7 @@ export default function CatalogCard(item: ICard): ReactElement {
       <div className="card-body">
         <p className="card-text">{title}</p>
         <p className="card-text">{price} руб.</p>
-        <Link to={`/catalog/${id}.html`} className="card-btn">
+        <Link to={`/items/${id}.html`} className="card-btn">
           <Button variant="outlined" color="primary">
             Заказать
           </Button>

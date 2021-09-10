@@ -28,7 +28,7 @@ function App(): ReactElement {
             <Route path="/about.html" exact component={About} />
             <Route path="/contacts.html" exact component={Contacts} />
             <Route path="/catalog.html" exact component={Catalog} />
-            <Route path="/catalog/:id.html" exact component={ProductCard} />
+            <Route path="/items/:id.html" exact component={ProductCard} />
             <Route path="/cart.html" exact component={Cart} />
             <Route path="*" component={Error404} /> CartIcon
           </Switch>

@@ -17,7 +17,7 @@ export default function CartItem(props: {
     <tr>
       <th scope="row">{index + 1}</th>
       <td>
-        <a href={`/catalog/${item.item.id}.html`}>{item.item.title}</a>
+        <a href={`/items/${item.item.id}.html`}>{item.item.title}</a>
       </td>
       <td>{item.size}</td>
       <td>{item.quantity}</td>
