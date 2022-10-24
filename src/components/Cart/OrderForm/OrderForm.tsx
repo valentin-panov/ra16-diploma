@@ -21,7 +21,12 @@ export default function OrderForm(): ReactElement {
     if (!agreement || !phone || !address) {
       return;
     }
-    const items = itemsState.map((el) => ({ id: el.item.id, price: el.item.price, count: el.quantity, size: el.size }));
+    const items = itemsState.map((el) => ({
+      id: el.item.id,
+      price: el.item.price,
+      count: el.quantity,
+      size: el.size,
+    }));
     dispatch(asyncPostOrder({ owner: { phone, address }, items }));
   };
 

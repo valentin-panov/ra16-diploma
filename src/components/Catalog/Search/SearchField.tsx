@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import CloseIcon from '@material-ui/icons/Close';

@@ -4,7 +4,7 @@
 // onBlur выстреливает раньше submit при нажатии на кнопку, хакнул таймаутом, хак мне не нравится
 
 import React, { FormEvent, ReactElement, useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import { useDispatch, useSelector } from 'react-redux';
